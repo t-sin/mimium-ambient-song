@@ -1,0 +1,50 @@
+RATE = 48000
+PI = 3.141592
+PI2 = 2 * PI
+
+fn saw(ph: float) -> float {
+    ph = ph % PI2
+    ph / PI2 * 2 - 1
+}
+
+fn osc_phase(freq: float) -> float {
+    now * freq * (PI2 / RATE)
+}
+
+type adsr = {
+    a: float,
+    d: float,
+    s: float,
+    r: float,
+    state: float,
+    start: float,
+}
+
+fn adsr(env: adsr) -> float {
+    if env.state == 0 {
+        0
+    } else if env.state == 1 {
+        0
+    } else if env.state == 2 {
+        0
+    } else if env.state == 3 {
+        0
+    } else if env.state == 4 {
+        0
+    }
+}
+
+adsr_env = adsr{ 100, 0, 1, 1000, 1, 0 }
+
+fn on(env: adsr) {
+    env.state = 1
+    env.start = now
+    on(env)@(now + RATE / 2)
+}
+
+fn dsp() -> (float) {
+    v = saw(osc_phase(440))
+    (v,)
+}
+
+on(adsr_env)

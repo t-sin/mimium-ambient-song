@@ -1,0 +1,9 @@
+[metadata]
+name = "t-sin-ambient"
+version = "0.1.0"
+description = "My first computer music"
+authors = ["Shinichi Tanaka <shinichi.tanaka45@gmail.com>"]
+license = "ISC"
+
+[package]
+entrypoint = "main.mmm"
